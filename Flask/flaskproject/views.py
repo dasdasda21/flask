@@ -1,8 +1,8 @@
-# import datetime
-# from flask import render_template
-# from main import app
-# from models import *
-# from flask import redirect
+import datetime
+from flask import render_template
+from main import app
+from models import *
+from flask import redirect
 # class Calendar:
 #     """
 #     当前类实现日历功能
@@ -100,8 +100,8 @@
 #     calendar = Calendar().return_month()
 #     now = datetime.datetime.now()
 #     return render_template("user_info.html",**locals())
-# from flask import request
-# from models import User
+from flask import request
+from models import User
 # @app.route("/register/",methods=["GET","POST"])
 # def register():
 #     if request.method == "POST":
@@ -156,29 +156,29 @@
 #     response.delete_cookie("email")
 #     response.delete_cookie("id")
 #     return response
-# @app.route("/holiday/",methods=["GET","POST"])
-# def holiday():
-#     if request.method == "POST":
-#         data = request.form
-#         request_user= data.get("request_user")
-#         request_type = data.get("request_type")
-#         start_time = data.get("start_time")
-#         end_time = data.get("end_time")
-#         phone = data.get("phone")
-#         request_description = data.get("request_description")
-#
-#         leave = Leave()
-#         leave.request_id = request.cookies.get("id")
-#         leave.request_name = request_user
-#         leave.request_type = request_type  # 假期类型
-#         leave.request_start_time = start_time  # 起始时间
-#         leave.request_end_time = end_time  # 结束时间
-#         leave.request_description = request_description  # 请假事由
-#         leave.request_phone = phone  # 联系方式
-#         leave.request_status = "0"  # 假条状态
-#         leave.save()
-#         return redirect("/leave_list/")
-#     return render_template("holiday.html")
+@app.route("/holiday/",methods=["GET","POST"])
+def holiday():
+    if request.method == "POST":                   #请假功能
+        data = request.form
+        request_user= data.get("request_user")
+        request_type = data.get("request_type")
+        start_time = data.get("start_time")
+        end_time = data.get("end_time")
+        phone = data.get("phone")
+        request_description = data.get("request_description")
+
+        leave = Leave()
+        leave.request_id = request.cookies.get("id")
+        leave.request_name = request_user
+        leave.request_type = request_type  # 假期类型
+        leave.request_start_time = start_time  # 起始时间
+        leave.request_end_time = end_time  # 结束时间
+        leave.request_description = request_description  # 请假事由
+        leave.request_phone = phone  # 联系方式
+        leave.request_status = "0"  # 假条状态
+        leave.save()
+        return redirect("/leave_list/")
+    return render_template("holiday.html")
 # from page import *
 # @app.route("/leave_list/<int:page>/")
 # def leave_list(page):
