@@ -87,7 +87,7 @@ def setPassword(password):
     return result
 
 class Calendar:
-    """
+    """                                                       #课程表功能模块
     当前类实现日历功能
     1、返回列表嵌套列表的日历
     2、安装日历格式打印日历
